@@ -1,0 +1,15 @@
+{
+  "name": "Pitch Black Best Basket",
+  "short_name": "Pitch Black",
+  "description": "Cheapest Near Mint Pitch Black and Chaos Rising cards from AU sellers, landed to Rivervale WA.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#121019",
+  "theme_color": "#121019",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
