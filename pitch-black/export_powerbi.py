@@ -55,14 +55,14 @@ def main(state_path, out):
             ebay = lid.startswith("ebay:")
             item = l.get("item", l["price"]) if ebay else l["price"]
             post = l.get("ship", 0.0) if ebay else POSTAGE.get(l["seller"], DEFAULT_POST)
-            rows.append(dict(card_id=cid, listing_id=lid, source="eBay AU" if ebay else "Fetch",
+            rows.append(dict(card_id=cid, card_label=f"{name} {num(cid)}", listing_id=lid, source="eBay AU" if ebay else "Fetch",
                              seller=l["seller"].replace("eBay ", "", 1) if ebay else l["seller"],
                              item_price=round(item, 2), postage=round(post or 0, 2), landed=round(item + (post or 0), 2),
                              listed_at=l.get("listedAt") or "",
                              url=l.get("url", "").split("?")[0] if ebay else f"https://www.fetchtcg.com/cards/{cid}",
                              deal="Yes" if lid in deals else "", in_basket="Yes" if lid == pick[2] else ""))
         for store, price in ((s.get("stores") or {}).get(cid) or {}).items():
-            rows.append(dict(card_id=cid, listing_id=f"store:{store}", source=store, seller=store, item_price=price,
+            rows.append(dict(card_id=cid, card_label=f"{name} {num(cid)}", listing_id=f"store:{store}", source=store, seller=store, item_price=price,
                              postage=STORE_POST, landed=round(price + STORE_POST, 2), listed_at="",
                              url=STORE_URL.get(store, "").format(q=q), deal="", in_basket=""))
     run = dict(run=s.get("run", "")[:16].replace("T", " "), basket_total=basket.get("total", ""),
@@ -78,7 +78,7 @@ def main(state_path, out):
     write("pb_run.csv", [run], list(run))
     write("pb_cards.csv", cards, list(cards[0]) if cards else ["card_id"])
     write("pb_listings.csv", sorted(rows, key=lambda r: (r["card_id"], r["landed"])),
-          ["card_id", "listing_id", "source", "seller", "item_price", "postage", "landed", "listed_at", "url", "deal", "in_basket"])
+          ["card_id", "card_label", "listing_id", "source", "seller", "item_price", "postage", "landed", "listed_at", "url", "deal", "in_basket"])
     print(f"powerbi: {len(cards)} cards, {len(rows)} listings -> {out}")
 
 
