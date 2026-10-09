@@ -36,13 +36,16 @@ def main(state_path, out):
         key = cid.split("_")[1].split("-")[0]
         name = c["name"].rsplit(" ", 1)[0] if c["name"].split()[-1].isdigit() else c["name"]
         pick = choice.get(cid) or [None, None, None]
-        cards.append(dict(card_id=cid, card=name, number=num(cid), set=SETS.get(key, c.get("set", "")), rarity=rarity(cid),
+        lst = (c.get("listings") or {}).get(pick[2] or "", {})
+        burl = (lst.get("url", "").split("?")[0] if (pick[2] or "").startswith("ebay:") else
+                (f"https://www.fetchtcg.com/cards/{cid}" if pick[2] else ""))
+        cards.append(dict(card_id=cid, card=name, number=num(cid), card_label=f"{name} {num(cid)}", set=SETS.get(key, c.get("set", "")), rarity=rarity(cid),
                           market=c.get("market") or "", fetch_sold_30d=c.get("sold") or "", fetch_sales_30d=c.get("sold_n") or 0,
                           image=f"https://card-images.fetchtcg.com/poke/{IMG.get(key, 4687)}/large/{cid}.png",
                           fetch_url=f"https://www.fetchtcg.com/cards/{cid}",
                           basket_source=("eBay AU" if (pick[0] or "").startswith("eBay ") else "Fetch") if pick[0] else "",
                           basket_seller=(pick[0] or "").replace("eBay ", "", 1), basket_price=pick[1] if pick[1] is not None else "",
-                          basket_listing=pick[2] or ""))
+                          basket_listing=pick[2] or "", basket_url=burl))
         q = f"{name} {num(cid)}".replace(" ", "+").replace("/", "%2F")
         for lid, l in (c.get("listings") or {}).items():
             ebay = lid.startswith("ebay:")
