@@ -45,7 +45,11 @@ def main(state_path, out):
                           fetch_url=f"https://www.fetchtcg.com/cards/{cid}",
                           basket_source=("eBay AU" if (pick[0] or "").startswith("eBay ") else "Fetch") if pick[0] else "",
                           basket_seller=(pick[0] or "").replace("eBay ", "", 1), basket_price=pick[1] if pick[1] is not None else "",
-                          basket_listing=pick[2] or "", basket_url=burl))
+                          basket_listing=pick[2] or "", basket_url=burl,
+                          # one basket per seller: the cards bought from them ship together for one postage charge
+                          basket_group=(f"{(pick[0] or '').replace('eBay ', '', 1)} ({'eBay AU' if (pick[0] or '').startswith('eBay ') else 'Fetch'})"
+                                        if pick[0] else ""),
+                          basket_seller_postage=bpost.get(pick[0], "") if pick[0] else ""))
         q = f"{name} {num(cid)}".replace(" ", "+").replace("/", "%2F")
         for lid, l in (c.get("listings") or {}).items():
             ebay = lid.startswith("ebay:")
