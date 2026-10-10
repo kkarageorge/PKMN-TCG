@@ -4,7 +4,8 @@
 Usage: python3 export_powerbi.py <pitch_black_cloud_state.json> <out_dir>
 Writes pb_run.csv, pb_cards.csv and pb_listings.csv. The report reads them from
 raw.githubusercontent.com/kkarageorge/pkmn-tcg/main/pitch-black/data/ on its daily refresh.
-Postage follows the checker's rules: Fetch $6.00 tracked per seller unless known, stores $10.00 per order,
+Values are AU only (KK 10-Oct-2026: the US TCGplayer price is not used): au_rate is the checker's AU going rate,
+the middle price of current AU listings. Postage follows the checker's rules: Fetch $6.00 tracked per seller unless known, stores $10.00 per order,
 eBay the listing's own shipping. Standard library only (runs in the cloud routine).
 """
 import csv, json, os, sys
@@ -40,7 +41,7 @@ def main(state_path, out):
         burl = (lst.get("url", "").split("?")[0] if (pick[2] or "").startswith("ebay:") else
                 (f"https://www.fetchtcg.com/cards/{cid}" if pick[2] else ""))
         cards.append(dict(card_id=cid, card=name, number=num(cid), card_label=f"{name} {num(cid)}", set=SETS.get(key, c.get("set", "")), rarity=rarity(cid),
-                          market=c.get("market") or "", fetch_sold_30d=c.get("sold") or "", fetch_sales_30d=c.get("sold_n") or 0,
+                          au_rate=c.get("au_rate") or "", au_listings=c.get("au_n") or 0, fetch_sold_30d=c.get("sold") or "", fetch_sales_30d=c.get("sold_n") or 0,
                           image=f"https://card-images.fetchtcg.com/poke/{IMG.get(key, 4687)}/large/{cid}.png",
                           fetch_url=f"https://www.fetchtcg.com/cards/{cid}",
                           basket_source=("eBay AU" if (pick[0] or "").startswith("eBay ") else "Fetch") if pick[0] else "",
