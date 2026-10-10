@@ -1,7 +1,7 @@
 {
   "name": "Card Deals",
   "short_name": "Card Deals",
-  "description": "Cheapest Near Mint Pitch Black and Chaos Rising cards from AU sellers, landed to Rivervale WA.",
+  "description": "Cheapest Near Mint cards still needed for the collection, from AU sellers, landed to Rivervale WA.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
