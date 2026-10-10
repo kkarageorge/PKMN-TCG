@@ -121,7 +121,7 @@ svg .dot { fill: var(--accent); }
     var m = Math.max(0, Math.round((Date.now() - run) / 60000)), t;
     if (m < 1) t = "just now"; else if (m < 60) t = m + " min ago";
     else if (m < 48 * 60) t = Math.round(m / 60) + " h ago"; else t = Math.round(m / 1440) + " days ago";
-    ago.textContent = t + " · next automatic check 7:51am";
+    ago.textContent = t + " · next automatic check 5:56am Perth time";
     when.classList.toggle("stale", m > 26 * 60);
   }
   tick(); setInterval(tick, 60000);
@@ -136,7 +136,7 @@ svg .dot { fill: var(--accent); }
       // the project's own check session directly instead.
       mcp.callTool("Claude Code Remote", "send_message",
         { session_id: "session_01JyaZr9G6SaQZiFGPAk4Q4V", priority: "next",
-          message: "Refresh button pressed on the Best Basket page: run the daily Pitch Black check now and republish the page (same steps as the 7:51am routine)." })
+          message: "Refresh button pressed on the Best Basket page: run the daily Pitch Black check now and republish the page (same steps as the daily routine)." })
         .then(function () {
           btn.textContent = "Refresh started";
           msg.textContent = "Checking Fetch, eBay and the stores now. The page updates itself in a few minutes; reopen it if it doesn't.";
@@ -321,6 +321,6 @@ svg .dot { fill: var(--accent); }
     </svg>
   </section>
 
-  <p class="small">Cards $1,181.96 + postage $35.50 (estimated: $6 tracked per seller unless known). Market is the TCGplayer market price in AUD from Fetch. "Offer about" means asking is more than 10% over market. Rebuilt each morning after the 7:51am check; nothing is bought or offered automatically.</p>
+  <p class="small">Cards $1,181.96 + postage $35.50 (estimated: $6 tracked per seller unless known). Market is the TCGplayer market price in AUD from Fetch. "Offer about" means asking is more than 10% over market. Rebuilt each morning after the 5:56am Perth-time check; nothing is bought or offered automatically.</p>
 </div>
 <script>if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js");</script></body></html>
