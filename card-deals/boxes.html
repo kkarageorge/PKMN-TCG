@@ -36,7 +36,7 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
 .box header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: start; }
 .rank { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); display: grid; place-items: center; font-size: 0.8rem; color: var(--muted); }
-.box:first-child .rank { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.list .box:first-child .rank { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .t { display: grid; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
 .pp { display: grid; justify-items: end; }
 .pp b { font-size: 1.25rem; }
@@ -52,6 +52,14 @@ a { color: var(--accent); text-underline-offset: 2px; }
 details summary { cursor: pointer; font-size: 0.85rem; color: var(--muted); }
 details ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 0.88rem; }
 details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; overflow-wrap: anywhere; }
+.era { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.viewby { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 0.85rem; color: var(--muted); }
+.viewby button { font: 500 0.88rem var(--body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.viewby button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.viewby button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eras { display: grid; gap: 26px; }
+.era-group { display: grid; gap: 10px; }
+.era-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
 .notes { font-size: 0.85rem; color: var(--muted); display: grid; gap: 6px; }
 .notes ul { margin: 0; padding-left: 18px; }
 .err { background: var(--high-bg); color: var(--high); border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; }
@@ -68,12 +76,16 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
     <div class="k"><span>Checked</span><b>Sun 25 Oct, 10:08am Perth</b></div>
   </div>
   
-  <h2>Cheapest first</h2>
-  <div class="list">
+  <div class="viewby" role="group" aria-label="View by">
+    <span>View by</span>
+    <button type="button" data-view="price" aria-pressed="true">Cheapest first</button>
+    <button type="button" data-view="era" aria-pressed="false">Era</button>
+  </div>
+  <div id="view-price" class="list">
 <article class="box">
   <header>
     <div class="rank num">1</div>
-    <div class="t"><h3>Delta Reign</h3>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Delta Reign</h3>
       <a href="https://www.kollecter.com.au/products/pokemon-tcg-mega-evolution-delta-reign-booster-box" target="_blank" rel="noopener">Kollecter (Bayswater WA)</a><span class="muted"></span>
       <div class="tags"><span class="tag pre">Pre-order</span><span class="tag good">Perth pickup</span></div></div>
     <div class="pp"><b class="num">$9.00</b><span>per pack</span></div>
@@ -84,7 +96,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">2</div>
-    <div class="t"><h3>Journey Together (enhanced)</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Journey Together (enhanced)</h3>
       <a href="https://www.ebay.com.au/itm/198740616898" target="_blank" rel="noopener">eBay komorcreations</a><span class="muted"> · 90 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$10.69</b><span>per pack</span></div>
@@ -95,7 +107,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">3</div>
-    <div class="t"><h3>Surging Sparks</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Surging Sparks</h3>
       <a href="https://www.ebay.com.au/itm/287589828597" target="_blank" rel="noopener">eBay scaredofsun</a><span class="muted"> · 23 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$11.81</b><span>per pack</span></div>
@@ -106,7 +118,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">4</div>
-    <div class="t"><h3>Temporal Forces</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Temporal Forces</h3>
       <a href="https://www.ebay.com.au/itm/257804460376" target="_blank" rel="noopener">eBay aussie-tcg-lego</a><span class="muted"> · 260 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
@@ -117,7 +129,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">5</div>
-    <div class="t"><h3>Scarlet &amp; Violet base</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Scarlet &amp; Violet base</h3>
       <a href="https://www.ebay.com.au/itm/257804456890" target="_blank" rel="noopener">eBay aussie-tcg-lego</a><span class="muted"> · 260 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
@@ -128,7 +140,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">6</div>
-    <div class="t"><h3>Mega Evolution (base, enhanced)</h3>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Mega Evolution (base, enhanced)</h3>
       <a href="https://www.ebay.com.au/itm/800815376432" target="_blank" rel="noopener">eBay jake_042625</a><span class="muted"> · 43 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
@@ -139,7 +151,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">7</div>
-    <div class="t"><h3>Paradox Rift</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Paradox Rift</h3>
       <a href="https://www.ebay.com.au/itm/127983975822" target="_blank" rel="noopener">eBay the_drim_collection</a><span class="muted"> · 297 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$12.64</b><span>per pack</span></div>
@@ -150,7 +162,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">8</div>
-    <div class="t"><h3>Astral Radiance</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Astral Radiance</h3>
       <a href="https://www.ebay.com.au/itm/860078730219" target="_blank" rel="noopener">eBay caitlibroa7</a><span class="muted"> · 103 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$12.75</b><span>per pack</span></div>
@@ -161,7 +173,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">9</div>
-    <div class="t"><h3>Vivid Voltage</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Vivid Voltage</h3>
       <a href="https://www.ebay.com.au/itm/398218068705" target="_blank" rel="noopener">eBay leshy2154</a><span class="muted"> · 101 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$12.78</b><span>per pack</span></div>
@@ -172,7 +184,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">10</div>
-    <div class="t"><h3>Battle Styles</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Battle Styles</h3>
       <a href="https://www.ebay.com.au/itm/137265282517" target="_blank" rel="noopener">eBay pokeballer172</a><span class="muted"> · 110 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$13.78</b><span>per pack</span></div>
@@ -183,7 +195,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">11</div>
-    <div class="t"><h3>Stellar Crown</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Stellar Crown</h3>
       <a href="https://www.ebay.com.au/itm/287484633327" target="_blank" rel="noopener">eBay dw.collectables</a><span class="muted"> · 148 feedback, 99%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$13.98</b><span>per pack</span></div>
@@ -194,7 +206,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">12</div>
-    <div class="t"><h3>Twilight Masquerade</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Twilight Masquerade</h3>
       <a href="https://www.ebay.com.au/itm/137808236157" target="_blank" rel="noopener">eBay boofhead149</a><span class="muted"> · 795 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$14.14</b><span>per pack</span></div>
@@ -205,7 +217,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">13</div>
-    <div class="t"><h3>Darkness Ablaze</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Darkness Ablaze</h3>
       <a href="https://www.ebay.com.au/itm/336813162905" target="_blank" rel="noopener">eBay stev_kalog</a><span class="muted"> · 28 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$14.79</b><span>per pack</span></div>
@@ -216,7 +228,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">14</div>
-    <div class="t"><h3>Obsidian Flames</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Obsidian Flames</h3>
       <a href="https://www.ebay.com.au/itm/137825851239" target="_blank" rel="noopener">eBay hunter_9574</a><span class="muted"> · 49 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$15.19</b><span>per pack</span></div>
@@ -227,7 +239,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">15</div>
-    <div class="t"><h3>Phantasmal Flames</h3>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Phantasmal Flames</h3>
       <a href="https://www.ebay.com.au/itm/307246286723" target="_blank" rel="noopener">eBay i24_collections</a><span class="muted"> · 3,395 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$16.67</b><span>per pack</span></div>
@@ -238,7 +250,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">16</div>
-    <div class="t"><h3>Paldea Evolved</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Paldea Evolved</h3>
       <a href="https://www.ebay.com.au/itm/960083684149" target="_blank" rel="noopener">eBay dvdcardsgames</a><span class="muted"> · 466 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$17.05</b><span>per pack</span></div>
@@ -249,7 +261,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">17</div>
-    <div class="t"><h3>Destined Rivals</h3>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Destined Rivals</h3>
       <a href="https://www.ebay.com.au/itm/206642691563" target="_blank" rel="noopener">eBay jediya</a><span class="muted"> · 55 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$17.90</b><span>per pack</span></div>
@@ -260,7 +272,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">18</div>
-    <div class="t"><h3>Chilling Reign</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Chilling Reign</h3>
       <a href="https://www.ebay.com.au/itm/307156874947" target="_blank" rel="noopener">eBay auscardmania</a><span class="muted"> · 165 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$19.79</b><span>per pack</span></div>
@@ -271,7 +283,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">19</div>
-    <div class="t"><h3>Silver Tempest</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Silver Tempest</h3>
       <a href="https://www.ebay.com.au/itm/158240883671" target="_blank" rel="noopener">eBay macaulyp</a><span class="muted"> · 73 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$22.75</b><span>per pack</span></div>
@@ -282,7 +294,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">20</div>
-    <div class="t"><h3>Brilliant Stars</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Brilliant Stars</h3>
       <a href="https://www.ebay.com.au/itm/257733334435" target="_blank" rel="noopener">eBay p.o.k.e.m.o.n</a><span class="muted"> · 93 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$24.11</b><span>per pack</span></div>
@@ -293,7 +305,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">21</div>
-    <div class="t"><h3>Lost Origin</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Lost Origin</h3>
       <a href="https://www.ebay.com.au/itm/117380145683" target="_blank" rel="noopener">eBay mike_collects</a><span class="muted"> · 495 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$30.51</b><span>per pack</span></div>
@@ -304,7 +316,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">22</div>
-    <div class="t"><h3>Fusion Strike</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Fusion Strike</h3>
       <a href="https://www.ebay.com.au/itm/407280950490" target="_blank" rel="noopener">eBay goodasgoldoz</a><span class="muted"> · 57 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$39.30</b><span>per pack</span></div>
@@ -315,7 +327,7 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
 <article class="box">
   <header>
     <div class="rank num">23</div>
-    <div class="t"><h3>Evolving Skies</h3>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Evolving Skies</h3>
       <a href="https://www.ebay.com.au/itm/336858336306" target="_blank" rel="noopener">eBay d_corso</a><span class="muted"> · 500 feedback, 100%</span>
       <div class="tags"></div></div>
     <div class="pp"><b class="num">$96.13</b><span>per pack</span></div>
@@ -323,6 +335,280 @@ details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap
   <div class="cost num"><span>Box $3,460.78</span><span>Postage $0.00</span><span class="tot">Total $3,460.78</span></div>
   <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/800667957700" target="_blank" rel="noopener">eBay pacifist_37</a><span class="num">$3,551.73 + $21.32 = <b>$3,573.05</b> · $99.25/pack</span></li><li><a href="https://www.ebay.com.au/itm/800822823126" target="_blank" rel="noopener">eBay katherydea-0</a><span class="num">$3,650.70 + $21.52 = <b>$3,672.22</b> · $102.01/pack</span></li><li><a href="https://www.ebay.com.au/itm/327419312734" target="_blank" rel="noopener">eBay lukefloyd1985</a><span class="num">$3,806.70 + $0.00 = <b>$3,806.70</b> · $105.74/pack</span></li><li><a href="https://www.ebay.com.au/itm/287337002560" target="_blank" rel="noopener">eBay cdtrifary</a><span class="num">$3,941.90 + $15.00 = <b>$3,956.90</b> · $109.91/pack</span></li></ul></details>
 </article></div>
+  <div id="view-era" class="eras" hidden><section class="era-group"><div class="era-head"><h2>Mega Evolution</h2>
+  <span class="muted">3 sets · from <b class="num">$9.00</b> per pack</span></div>
+  <div class="list">
+<article class="box">
+  <header>
+    <div class="rank num">1</div>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Delta Reign</h3>
+      <a href="https://www.kollecter.com.au/products/pokemon-tcg-mega-evolution-delta-reign-booster-box" target="_blank" rel="noopener">Kollecter (Bayswater WA)</a><span class="muted"></span>
+      <div class="tags"><span class="tag pre">Pre-order</span><span class="tag good">Perth pickup</span></div></div>
+    <div class="pp"><b class="num">$9.00</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $324.00</span><span>Postage $0.00</span><span class="tot">Total $324.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/198718833681" target="_blank" rel="noopener">eBay 3rrors</a><span class="num">$359.99 + $0.00 = <b>$359.99</b> · $10.00/pack</span> <em>pre-order</em></li><li><a href="https://www.ebay.com.au/itm/287577939239" target="_blank" rel="noopener">eBay iamsexysaxman</a><span class="num">$350.00 + $10.00 = <b>$360.00</b> · $10.00/pack</span> <em>pre-order</em></li><li><a href="https://www.ebay.com.au/itm/820253925353" target="_blank" rel="noopener">eBay rollupcollectables</a><span class="num">$360.00 + $0.00 = <b>$360.00</b> · $10.00/pack</span> <em>pre-order</em></li><li><a href="https://www.ebay.com.au/itm/366717335708" target="_blank" rel="noopener">eBay jas_collectables1</a><span class="num">$350.00 + $16.00 = <b>$366.00</b> · $10.17/pack</span> <em>pre-order</em></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">2</div>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Mega Evolution (base, enhanced)</h3>
+      <a href="https://www.ebay.com.au/itm/800815376432" target="_blank" rel="noopener">eBay jake_042625</a><span class="muted"> · 43 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $430.00</span><span>Postage $0.00</span><span class="tot">Total $430.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/307245644155" target="_blank" rel="noopener">eBay nightshadetrading</a><span class="num">$449.00 + $0.00 = <b>$449.00</b> · $12.47/pack</span></li><li><a href="https://www.ebay.com.au/itm/198726464947" target="_blank" rel="noopener">eBay billlybob44</a><span class="num">$449.99 + $0.00 = <b>$449.99</b> · $12.50/pack</span></li><li><a href="https://www.ebay.com.au/itm/900021355176" target="_blank" rel="noopener">eBay collectking123</a><span class="num">$436.90 + $13.44 = <b>$450.34</b> · $12.51/pack</span></li><li><a href="https://www.ebay.com.au/itm/117447517979" target="_blank" rel="noopener">eBay soled_outau</a><span class="num">$454.00 + $0.00 = <b>$454.00</b> · $12.61/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">3</div>
+    <div class="t"><span class="era">Mega Evolution</span><h3>Phantasmal Flames</h3>
+      <a href="https://www.ebay.com.au/itm/307246286723" target="_blank" rel="noopener">eBay i24_collections</a><span class="muted"> · 3,395 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$16.67</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $599.95</span><span>Postage $0.00</span><span class="tot">Total $599.95</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/840050169931" target="_blank" rel="noopener">eBay keepitgolden</a><span class="num">$593.10 + $13.44 = <b>$606.54</b> · $16.85/pack</span></li><li><a href="https://www.ebay.com.au/itm/267755647469" target="_blank" rel="noopener">eBay bad_harold</a><span class="num">$599.00 + $12.00 = <b>$611.00</b> · $16.97/pack</span></li><li><a href="https://www.ebay.com.au/itm/860004495132" target="_blank" rel="noopener">eBay laflamecollectibles</a><span class="num">$599.55 + $13.44 = <b>$612.99</b> · $17.03/pack</span></li><li><a href="https://www.ebay.com.au/itm/860064244858" target="_blank" rel="noopener">eBay matmcn0</a><span class="num">$598.30 + $15.19 = <b>$613.49</b> · $17.04/pack</span></li></ul></details>
+</article></div></section><section class="era-group"><div class="era-head"><h2>Scarlet &amp; Violet</h2>
+  <span class="muted">10 sets · from <b class="num">$10.69</b> per pack</span></div>
+  <div class="list">
+<article class="box">
+  <header>
+    <div class="rank num">1</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Journey Together (enhanced)</h3>
+      <a href="https://www.ebay.com.au/itm/198740616898" target="_blank" rel="noopener">eBay komorcreations</a><span class="muted"> · 90 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$10.69</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $385.00</span><span>Postage $0.00</span><span class="tot">Total $385.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/237133915535" target="_blank" rel="noopener">eBay mcjeff_1</a><span class="num">$408.80 + $0.00 = <b>$408.80</b> · $11.36/pack</span></li><li><a href="https://www.ebay.com.au/itm/167438906704" target="_blank" rel="noopener">eBay seller_it_all</a><span class="num">$398.88 + $10.95 = <b>$409.83</b> · $11.38/pack</span></li><li><a href="https://www.ebay.com.au/itm/407277129359" target="_blank" rel="noopener">eBay meso-mart</a><span class="num">$409.90 + $0.00 = <b>$409.90</b> · $11.39/pack</span></li><li><a href="https://www.ebay.com.au/itm/237120414335" target="_blank" rel="noopener">eBay supplychainau</a><span class="num">$400.00 + $12.50 = <b>$412.50</b> · $11.46/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">2</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Surging Sparks</h3>
+      <a href="https://www.ebay.com.au/itm/287589828597" target="_blank" rel="noopener">eBay scaredofsun</a><span class="muted"> · 23 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$11.81</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $409.00</span><span>Postage $15.99</span><span class="tot">Total $424.99</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/206496893444" target="_blank" rel="noopener">eBay tcgworldau</a><span class="num">$425.00 + $0.00 = <b>$425.00</b> · $11.81/pack</span></li><li><a href="https://www.ebay.com.au/itm/960054166700" target="_blank" rel="noopener">eBay thingsfromharrison</a><span class="num">$429.95 + $0.00 = <b>$429.95</b> · $11.94/pack</span></li><li><a href="https://www.ebay.com.au/itm/366650614818" target="_blank" rel="noopener">eBay masgee0</a><span class="num">$429.99 + $0.00 = <b>$429.99</b> · $11.94/pack</span></li><li><a href="https://www.ebay.com.au/itm/237009160651" target="_blank" rel="noopener">eBay bad_harold</a><span class="num">$420.00 + $10.00 = <b>$430.00</b> · $11.94/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">3</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Temporal Forces</h3>
+      <a href="https://www.ebay.com.au/itm/257804460376" target="_blank" rel="noopener">eBay aussie-tcg-lego</a><span class="muted"> · 260 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $429.99</span><span>Postage $0.00</span><span class="tot">Total $429.99</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/840050568780" target="_blank" rel="noopener">eBay keepitgolden</a><span class="num">$424.70 + $13.44 = <b>$438.14</b> · $12.17/pack</span></li><li><a href="https://www.ebay.com.au/itm/227524029451" target="_blank" rel="noopener">eBay aaron_martyr</a><span class="num">$440.00 + $0.00 = <b>$440.00</b> · $12.22/pack</span></li><li><a href="https://www.ebay.com.au/itm/188903772326" target="_blank" rel="noopener">eBay gackt80gackt81</a><span class="num">$429.99 + $11.99 = <b>$441.98</b> · $12.28/pack</span></li><li><a href="https://www.ebay.com.au/itm/407114119529" target="_blank" rel="noopener">eBay sammys_tcg_treasures</a><span class="num">$444.44 + $10.00 = <b>$454.44</b> · $12.62/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">4</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Scarlet &amp; Violet base</h3>
+      <a href="https://www.ebay.com.au/itm/257804456890" target="_blank" rel="noopener">eBay aussie-tcg-lego</a><span class="muted"> · 260 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$11.94</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $429.99</span><span>Postage $0.00</span><span class="tot">Total $429.99</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/198710541770" target="_blank" rel="noopener">eBay billlybob44</a><span class="num">$430.00 + $0.00 = <b>$430.00</b> · $11.94/pack</span></li><li><a href="https://www.ebay.com.au/itm/297989207394" target="_blank" rel="noopener">eBay ajtradingco</a><span class="num">$429.00 + $15.95 = <b>$444.95</b> · $12.36/pack</span></li><li><a href="https://www.ebay.com.au/itm/296493089483" target="_blank" rel="noopener">eBay starfish.mart</a><span class="num">$450.00 + $0.00 = <b>$450.00</b> · $12.50/pack</span></li><li><a href="https://www.ebay.com.au/itm/168803766154" target="_blank" rel="noopener">eBay traderscache</a><span class="num">$439.95 + $23.52 = <b>$463.47</b> · $12.87/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">5</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Paradox Rift</h3>
+      <a href="https://www.ebay.com.au/itm/127983975822" target="_blank" rel="noopener">eBay the_drim_collection</a><span class="muted"> · 297 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$12.64</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $454.95</span><span>Postage $0.00</span><span class="tot">Total $454.95</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/227524030094" target="_blank" rel="noopener">eBay aaron_martyr</a><span class="num">$475.00 + $0.00 = <b>$475.00</b> · $13.19/pack</span></li><li><a href="https://www.ebay.com.au/itm/278436009632" target="_blank" rel="noopener">eBay andchu123</a><span class="num">$470.00 + $15.00 = <b>$485.00</b> · $13.47/pack</span></li><li><a href="https://www.ebay.com.au/itm/336553159825" target="_blank" rel="noopener">eBay ellisfrompunchy</a><span class="num">$477.70 + $20.77 = <b>$498.47</b> · $13.85/pack</span></li><li><a href="https://www.ebay.com.au/itm/358899335139" target="_blank" rel="noopener">eBay jigglydeals</a><span class="num">$499.50 + $0.00 = <b>$499.50</b> · $13.88/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">6</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Stellar Crown</h3>
+      <a href="https://www.ebay.com.au/itm/287484633327" target="_blank" rel="noopener">eBay dw.collectables</a><span class="muted"> · 148 feedback, 99%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$13.98</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $489.95</span><span>Postage $13.44</span><span class="tot">Total $503.39</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/178375850083" target="_blank" rel="noopener">eBay hvn--au</a><span class="num">$487.24 + $19.98 = <b>$507.22</b> · $14.09/pack</span></li><li><a href="https://www.ebay.com.au/itm/257804471115" target="_blank" rel="noopener">eBay aussie-tcg-lego</a><span class="num">$509.99 + $0.00 = <b>$509.99</b> · $14.17/pack</span></li><li><a href="https://www.ebay.com.au/itm/158239904645" target="_blank" rel="noopener">eBay itenka</a><span class="num">$509.50 + $17.82 = <b>$527.32</b> · $14.65/pack</span></li><li><a href="https://www.ebay.com.au/itm/287488594689" target="_blank" rel="noopener">eBay pleasedontsendmecrap</a><span class="num">$530.70 + $0.00 = <b>$530.70</b> · $14.74/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">7</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Twilight Masquerade</h3>
+      <a href="https://www.ebay.com.au/itm/137808236157" target="_blank" rel="noopener">eBay boofhead149</a><span class="muted"> · 795 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$14.14</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $509.00</span><span>Postage $0.00</span><span class="tot">Total $509.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/298465897465" target="_blank" rel="noopener">eBay old_skoolr</a><span class="num">$543.00 + $0.00 = <b>$543.00</b> · $15.08/pack</span></li><li><a href="https://www.ebay.com.au/itm/236763384741" target="_blank" rel="noopener">eBay lucy5_21</a><span class="num">$550.00 + $0.00 = <b>$550.00</b> · $15.28/pack</span></li><li><a href="https://www.ebay.com.au/itm/398243141964" target="_blank" rel="noopener">eBay thequickfixx</a><span class="num">$539.96 + $10.95 = <b>$550.91</b> · $15.30/pack</span></li><li><a href="https://www.ebay.com.au/itm/358491269943" target="_blank" rel="noopener">eBay cardvault.tcg</a><span class="num">$544.95 + $16.99 = <b>$561.94</b> · $15.61/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">8</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Obsidian Flames</h3>
+      <a href="https://www.ebay.com.au/itm/137825851239" target="_blank" rel="noopener">eBay hunter_9574</a><span class="muted"> · 49 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$15.19</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $529.00</span><span>Postage $17.82</span><span class="tot">Total $546.82</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/287584859483" target="_blank" rel="noopener">eBay micky_boy355</a><span class="num">$582.70 + $0.00 = <b>$582.70</b> · $16.19/pack</span></li><li><a href="https://www.ebay.com.au/itm/366475581852" target="_blank" rel="noopener">eBay garyoakcollections</a><span class="num">$581.18 + $13.44 = <b>$594.62</b> · $16.52/pack</span></li><li><a href="https://www.ebay.com.au/itm/237118807996" target="_blank" rel="noopener">eBay rkotsupply</a><span class="num">$583.00 + $12.50 = <b>$595.50</b> · $16.54/pack</span></li><li><a href="https://www.ebay.com.au/itm/900021353470" target="_blank" rel="noopener">eBay collectking123</a><span class="num">$582.70 + $13.44 = <b>$596.14</b> · $16.56/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">9</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Paldea Evolved</h3>
+      <a href="https://www.ebay.com.au/itm/960083684149" target="_blank" rel="noopener">eBay dvdcardsgames</a><span class="muted"> · 466 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$17.05</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $603.50</span><span>Postage $10.47</span><span class="tot">Total $613.97</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/168802987250" target="_blank" rel="noopener">eBay traderscache</a><span class="num">$649.95 + $10.95 = <b>$660.90</b> · $18.36/pack</span></li><li><a href="https://www.ebay.com.au/itm/377588551588" target="_blank" rel="noopener">eBay falcons_tcg</a><span class="num">$655.49 + $17.82 = <b>$673.31</b> · $18.70/pack</span></li><li><a href="https://www.ebay.com.au/itm/358764580844" target="_blank" rel="noopener">eBay cardvault.tcg</a><span class="num">$679.90 + $16.99 = <b>$696.89</b> · $19.36/pack</span></li><li><a href="https://www.ebay.com.au/itm/358769258413" target="_blank" rel="noopener">eBay pokedo0</a><span class="num">$697.10 + $0.00 = <b>$697.10</b> · $19.36/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">10</div>
+    <div class="t"><span class="era">Scarlet &amp; Violet</span><h3>Destined Rivals</h3>
+      <a href="https://www.ebay.com.au/itm/206642691563" target="_blank" rel="noopener">eBay jediya</a><span class="muted"> · 55 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$17.90</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $624.30</span><span>Postage $20.00</span><span class="tot">Total $644.30</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/307246285446" target="_blank" rel="noopener">eBay i24_collections</a><span class="num">$679.95 + $15.95 = <b>$695.90</b> · $19.33/pack</span></li><li><a href="https://www.ebay.com.au/itm/940039227256" target="_blank" rel="noopener">eBay tugusmctugus</a><span class="num">$700.00 + $0.00 = <b>$700.00</b> · $19.44/pack</span></li><li><a href="https://www.ebay.com.au/itm/198715216795" target="_blank" rel="noopener">eBay starboard-games</a><span class="num">$709.00 + $0.00 = <b>$709.00</b> · $19.69/pack</span></li><li><a href="https://www.ebay.com.au/itm/198698244529" target="_blank" rel="noopener">eBay mtragz91</a><span class="num">$705.00 + $12.00 = <b>$717.00</b> · $19.92/pack</span></li></ul></details>
+</article></div></section><section class="era-group"><div class="era-head"><h2>Sword &amp; Shield</h2>
+  <span class="muted">10 sets · from <b class="num">$12.75</b> per pack</span></div>
+  <div class="list">
+<article class="box">
+  <header>
+    <div class="rank num">1</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Astral Radiance</h3>
+      <a href="https://www.ebay.com.au/itm/860078730219" target="_blank" rel="noopener">eBay caitlibroa7</a><span class="muted"> · 103 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$12.75</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $439.99</span><span>Postage $18.99</span><span class="tot">Total $458.98</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/336824474705" target="_blank" rel="noopener">eBay collectables-australia</a><span class="num">$459.95 + $0.00 = <b>$459.95</b> · $12.78/pack</span></li><li><a href="https://www.ebay.com.au/itm/188920785768" target="_blank" rel="noopener">eBay pokecubbie</a><span class="num">$451.20 + $13.90 = <b>$465.10</b> · $12.92/pack</span></li><li><a href="https://www.ebay.com.au/itm/336824474656" target="_blank" rel="noopener">eBay collectables-australia</a><span class="num">$465.95 + $0.00 = <b>$465.95</b> · $12.94/pack</span></li><li><a href="https://www.ebay.com.au/itm/920002957164" target="_blank" rel="noopener">eBay haad157</a><span class="num">$470.00 + $0.00 = <b>$470.00</b> · $13.06/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">2</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Vivid Voltage</h3>
+      <a href="https://www.ebay.com.au/itm/398218068705" target="_blank" rel="noopener">eBay leshy2154</a><span class="muted"> · 101 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$12.78</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $460.00</span><span>Postage $0.00</span><span class="tot">Total $460.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/336813171558" target="_blank" rel="noopener">eBay stev_kalog</a><span class="num">$435.30 + $24.73 = <b>$460.03</b> · $12.78/pack</span></li><li><a href="https://www.ebay.com.au/itm/168758982597" target="_blank" rel="noopener">eBay flaming_perfume</a><span class="num">$485.00 + $14.95 = <b>$499.95</b> · $13.89/pack</span></li><li><a href="https://www.ebay.com.au/itm/116691089752" target="_blank" rel="noopener">eBay avanco</a><span class="num">$499.99 + $0.00 = <b>$499.99</b> · $13.89/pack</span></li><li><a href="https://www.ebay.com.au/itm/227542277179" target="_blank" rel="noopener">eBay castlecollectablesofficial</a><span class="num">$487.69 + $19.85 = <b>$507.54</b> · $14.10/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">3</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Battle Styles</h3>
+      <a href="https://www.ebay.com.au/itm/137265282517" target="_blank" rel="noopener">eBay pokeballer172</a><span class="muted"> · 110 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$13.78</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $496.13</span><span>Postage $0.00</span><span class="tot">Total $496.13</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/287541225565" target="_blank" rel="noopener">eBay dw.collectables</a><span class="num">$499.00 + $0.00 = <b>$499.00</b> · $13.86/pack</span></li><li><a href="https://www.ebay.com.au/itm/227545962108" target="_blank" rel="noopener">eBay kydo6945</a><span class="num">$483.00 + $20.00 = <b>$503.00</b> · $13.97/pack</span></li><li><a href="https://www.ebay.com.au/itm/137265282512" target="_blank" rel="noopener">eBay pokeballer172</a><span class="num">$506.05 + $0.00 = <b>$506.05</b> · $14.06/pack</span></li><li><a href="https://www.ebay.com.au/itm/137265282518" target="_blank" rel="noopener">eBay pokeballer172</a><span class="num">$515.97 + $0.00 = <b>$515.97</b> · $14.33/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">4</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Darkness Ablaze</h3>
+      <a href="https://www.ebay.com.au/itm/336813162905" target="_blank" rel="noopener">eBay stev_kalog</a><span class="muted"> · 28 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$14.79</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $514.80</span><span>Postage $17.82</span><span class="tot">Total $532.62</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/336813165098" target="_blank" rel="noopener">eBay stev_kalog</a><span class="num">$514.80 + $17.82 = <b>$532.62</b> · $14.79/pack</span></li><li><a href="https://www.ebay.com.au/itm/227472513453" target="_blank" rel="noopener">eBay tste_99</a><span class="num">$530.70 + $15.00 = <b>$545.70</b> · $15.16/pack</span></li><li><a href="https://www.ebay.com.au/itm/227545918752" target="_blank" rel="noopener">eBay kydo6945</a><span class="num">$530.70 + $20.00 = <b>$550.70</b> · $15.30/pack</span></li><li><a href="https://www.ebay.com.au/itm/287488590631" target="_blank" rel="noopener">eBay pleasedontsendmecrap</a><span class="num">$582.70 + $0.00 = <b>$582.70</b> · $16.19/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">5</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Chilling Reign</h3>
+      <a href="https://www.ebay.com.au/itm/307156874947" target="_blank" rel="noopener">eBay auscardmania</a><span class="muted"> · 165 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$19.79</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $698.88</span><span>Postage $13.40</span><span class="tot">Total $712.28</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/257733315335" target="_blank" rel="noopener">eBay p.o.k.e.m.o.n</a><span class="num">$708.60 + $17.82 = <b>$726.42</b> · $20.18/pack</span></li><li><a href="https://www.ebay.com.au/itm/287541225275" target="_blank" rel="noopener">eBay dw.collectables</a><span class="num">$729.00 + $13.44 = <b>$742.44</b> · $20.62/pack</span></li><li><a href="https://www.ebay.com.au/itm/278349206864" target="_blank" rel="noopener">eBay spaniard38</a><span class="num">$728.30 + $17.82 = <b>$746.12</b> · $20.73/pack</span></li><li><a href="https://www.ebay.com.au/itm/406956984354" target="_blank" rel="noopener">eBay nasjesjess</a><span class="num">$749.10 + $0.00 = <b>$749.10</b> · $20.81/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">6</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Silver Tempest</h3>
+      <a href="https://www.ebay.com.au/itm/158240883671" target="_blank" rel="noopener">eBay macaulyp</a><span class="muted"> · 73 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$22.75</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $801.10</span><span>Postage $17.82</span><span class="tot">Total $818.92</span></div>
+  <details><summary>Next cheapest (1)</summary><ul><li><a href="https://www.ebay.com.au/itm/366405875827" target="_blank" rel="noopener">eBay sumxtras01</a><span class="num">$850.00 + $16.39 = <b>$866.39</b> · $24.07/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">7</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Brilliant Stars</h3>
+      <a href="https://www.ebay.com.au/itm/257733334435" target="_blank" rel="noopener">eBay p.o.k.e.m.o.n</a><span class="muted"> · 93 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$24.11</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $850.00</span><span>Postage $17.82</span><span class="tot">Total $867.82</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/840044012843" target="_blank" rel="noopener">eBay tonyytricks</a><span class="num">$858.30 + $20.00 = <b>$878.30</b> · $24.40/pack</span></li><li><a href="https://www.ebay.com.au/itm/398360518322" target="_blank" rel="noopener">eBay orsonstudio</a><span class="num">$900.00 + $0.00 = <b>$900.00</b> · $25.00/pack</span></li><li><a href="https://www.ebay.com.au/itm/287611541145" target="_blank" rel="noopener">eBay dw.collectables</a><span class="num">$888.00 + $13.44 = <b>$901.44</b> · $25.04/pack</span></li><li><a href="https://www.ebay.com.au/itm/188824996402" target="_blank" rel="noopener">eBay cards-by-nick</a><span class="num">$920.70 + $0.00 = <b>$920.70</b> · $25.58/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">8</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Lost Origin</h3>
+      <a href="https://www.ebay.com.au/itm/117380145683" target="_blank" rel="noopener">eBay mike_collects</a><span class="muted"> · 495 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$30.51</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $1,085.00</span><span>Postage $13.20</span><span class="tot">Total $1,098.20</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/336769880408" target="_blank" rel="noopener">eBay je-385213</a><span class="num">$1,150.00 + $10.00 = <b>$1,160.00</b> · $32.22/pack</span></li><li><a href="https://www.ebay.com.au/itm/128125911131" target="_blank" rel="noopener">eBay m4444g</a><span class="num">$1,154.70 + $10.00 = <b>$1,164.70</b> · $32.35/pack</span></li><li><a href="https://www.ebay.com.au/itm/820157414557" target="_blank" rel="noopener">eBay revanwars</a><span class="num">$1,154.70 + $17.82 = <b>$1,172.52</b> · $32.57/pack</span></li><li><a href="https://www.ebay.com.au/itm/278318815760" target="_blank" rel="noopener">eBay xavier77770</a><span class="num">$1,175.00 + $13.44 = <b>$1,188.44</b> · $33.01/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">9</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Fusion Strike</h3>
+      <a href="https://www.ebay.com.au/itm/407280950490" target="_blank" rel="noopener">eBay goodasgoldoz</a><span class="muted"> · 57 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$39.30</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $1,399.00</span><span>Postage $15.95</span><span class="tot">Total $1,414.95</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/800514649294" target="_blank" rel="noopener">eBay scuba_-_steve</a><span class="num">$1,399.95 + $16.00 = <b>$1,415.95</b> · $39.33/pack</span></li><li><a href="https://www.ebay.com.au/itm/117412969262" target="_blank" rel="noopener">eBay sirilco</a><span class="num">$1,456.30 + $0.00 = <b>$1,456.30</b> · $40.45/pack</span></li><li><a href="https://www.ebay.com.au/itm/940038360180" target="_blank" rel="noopener">eBay andchu123</a><span class="num">$1,449.00 + $15.00 = <b>$1,464.00</b> · $40.67/pack</span></li><li><a href="https://www.ebay.com.au/itm/188492465135" target="_blank" rel="noopener">eBay nectar4321</a><span class="num">$1,466.70 + $13.44 = <b>$1,480.14</b> · $41.12/pack</span></li></ul></details>
+</article>
+<article class="box">
+  <header>
+    <div class="rank num">10</div>
+    <div class="t"><span class="era">Sword &amp; Shield</span><h3>Evolving Skies</h3>
+      <a href="https://www.ebay.com.au/itm/336858336306" target="_blank" rel="noopener">eBay d_corso</a><span class="muted"> · 500 feedback, 100%</span>
+      <div class="tags"></div></div>
+    <div class="pp"><b class="num">$96.13</b><span>per pack</span></div>
+  </header>
+  <div class="cost num"><span>Box $3,460.78</span><span>Postage $0.00</span><span class="tot">Total $3,460.78</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><a href="https://www.ebay.com.au/itm/800667957700" target="_blank" rel="noopener">eBay pacifist_37</a><span class="num">$3,551.73 + $21.32 = <b>$3,573.05</b> · $99.25/pack</span></li><li><a href="https://www.ebay.com.au/itm/800822823126" target="_blank" rel="noopener">eBay katherydea-0</a><span class="num">$3,650.70 + $21.52 = <b>$3,672.22</b> · $102.01/pack</span></li><li><a href="https://www.ebay.com.au/itm/327419312734" target="_blank" rel="noopener">eBay lukefloyd1985</a><span class="num">$3,806.70 + $0.00 = <b>$3,806.70</b> · $105.74/pack</span></li><li><a href="https://www.ebay.com.au/itm/287337002560" target="_blank" rel="noopener">eBay cdtrifary</a><span class="num">$3,941.90 + $15.00 = <b>$3,956.90</b> · $109.91/pack</span></li></ul></details>
+</article></div></section></div>
+  <script>
+  (function(){
+    var btns = document.querySelectorAll(".viewby button");
+    function show(v){
+      document.getElementById("view-price").hidden = v !== "price";
+      document.getElementById("view-era").hidden = v !== "era";
+      btns.forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.view === v ? "true" : "false"); });
+      try { localStorage.setItem("boxesView", v); } catch (_) {}
+    }
+    btns.forEach(function(b){ b.onclick = function(){ show(b.dataset.view); }; });
+    var saved = null; try { saved = localStorage.getItem("boxesView"); } catch (_) {}
+    if (saved === "era") show("era");
+  })();
+  </script>
   <div class="notes">
     <b>How this works</b>
     <ul>
