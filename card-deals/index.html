@@ -130,13 +130,13 @@ svg .dot { fill: var(--accent); }
   </div>
 
   <div class="refresh">
-    <div class="when" id="when"><b>Prices checked Sat 7 Nov 2026, 5:56pm Perth time</b><span id="ago"></span></div>
+    <div class="when" id="when"><b>Prices checked Sun 8 Nov 2026, 5:57am Perth time</b><span id="ago"></span></div>
     <button id="refresh" type="button" hidden>Refresh now</button>
     <p class="msg" id="msg" role="status"></p>
   </div>
 <script>
 (function () {
-  var run = new Date("2026-11-07T17:56+08:00"), ago = document.getElementById("ago"), when = document.getElementById("when");
+  var run = new Date("2026-11-08T05:57+08:00"), ago = document.getElementById("ago"), when = document.getElementById("when");
   function tick() {
     var m = Math.max(0, Math.round((Date.now() - run) / 60000)), t;
     if (m < 1) t = "just now"; else if (m < 60) t = m + " min ago";
@@ -182,7 +182,7 @@ svg .dot { fill: var(--accent); }
     <div class="k"><span>Parcels</span><span class="num">4</span></div>
     <div class="k"><span>Cards covered</span><span class="num">4 of 4</span></div>
     <div class="k"><span>Saving vs AU rate</span><span class="num save">$180.21</span></div>
-    <span class="delta up">▲ $15.01 since last check</span>
+    <span class="delta ">● $0.00 since last check</span>
   </div>
 
   <section class="deals"><h2>Best deals today</h2><ol><li><a href="#c-poke-mcr-122-086-mhr-standard-holo"><span class="dname">Mega Greninja ex 122</span><span class="dpct">22% under</span><span class="num">$265.00 landed</span><span class="dsell">eBay ozrips · AU rate $339.44</span></a></li><li><a href="#c-poke-mcr-116-086-sir-standard-holo"><span class="dname">Mega Greninja ex 116</span><span class="dpct">17% under</span><span class="num">$225.00 landed</span><span class="dsell">eBay juskedd0 · AU rate $269.88</span></a></li><li><a href="#c-poke-mpb-120-084-mhr-standard-holo"><span class="dname">Mega Darkrai ex 120</span><span class="dpct">11% under</span><span class="num">$245.00 landed</span><span class="dsell">eBay chimgoat · AU rate $276.30</span></a></li></ol></section>
@@ -266,13 +266,13 @@ svg .dot { fill: var(--accent); }
     <h2>Basket total by day</h2>
     
     <svg viewBox="0 0 400 150" role="img" aria-label="Basket total by day">
-      <line x1="45.4" x2="45.4" y1="14" y2="106" class="mark"/><line x1="79.8" x2="79.8" y1="14" y2="106" class="mark"/><line x1="125.6" x2="125.6" y1="14" y2="106" class="mark"/><line x1="148.5" x2="148.5" y1="14" y2="106" class="mark"/><line x1="171.4" x2="171.4" y1="14" y2="106" class="mark"/><line x1="205.7" x2="205.7" y1="14" y2="106" class="mark"/><line x1="228.6" x2="228.6" y1="14" y2="106" class="mark"/>
-      <polygon points="34.0,106 34.0,43.5 45.4,45.9 56.9,47.1 68.3,35.7 79.8,35.2 91.2,40.8 102.7,48.0 114.1,57.1 125.6,57.6 137.0,45.5 148.5,74.8 159.9,71.1 171.4,84.0 182.8,90.2 194.3,94.7 205.7,88.2 217.2,91.4 228.6,96.2 240.1,96.8 251.5,78.0 263.0,78.1 274.4,76.7 285.9,75.1 297.3,74.2 308.8,72.3 320.2,83.2 331.7,93.0 343.1,85.9 354.6,83.0 366.0,80.6 366.0,106" class="area"/>
-      <polyline points="34.0,43.5 45.4,45.9 56.9,47.1 68.3,35.7 79.8,35.2 91.2,40.8 102.7,48.0 114.1,57.1 125.6,57.6 137.0,45.5 148.5,74.8 159.9,71.1 171.4,84.0 182.8,90.2 194.3,94.7 205.7,88.2 217.2,91.4 228.6,96.2 240.1,96.8 251.5,78.0 263.0,78.1 274.4,76.7 285.9,75.1 297.3,74.2 308.8,72.3 320.2,83.2 331.7,93.0 343.1,85.9 354.6,83.0 366.0,80.6" class="line"/>
+      <line x1="68.3" x2="68.3" y1="14" y2="106" class="mark"/><line x1="114.1" x2="114.1" y1="14" y2="106" class="mark"/><line x1="137.0" x2="137.0" y1="14" y2="106" class="mark"/><line x1="159.9" x2="159.9" y1="14" y2="106" class="mark"/><line x1="194.3" x2="194.3" y1="14" y2="106" class="mark"/><line x1="217.2" x2="217.2" y1="14" y2="106" class="mark"/>
+      <polygon points="34.0,106 34.0,45.9 45.4,47.1 56.9,35.7 68.3,35.2 79.8,40.8 91.2,48.0 102.7,57.1 114.1,57.6 125.6,45.5 137.0,74.8 148.5,71.1 159.9,84.0 171.4,90.2 182.8,94.7 194.3,88.2 205.7,91.4 217.2,96.2 228.6,96.8 240.1,78.0 251.5,78.1 263.0,76.7 274.4,75.1 285.9,74.2 297.3,72.3 308.8,83.2 320.2,93.0 331.7,85.9 343.1,83.0 354.6,80.6 366.0,80.6 366.0,106" class="area"/>
+      <polyline points="34.0,45.9 45.4,47.1 56.9,35.7 68.3,35.2 79.8,40.8 91.2,48.0 102.7,57.1 114.1,57.6 125.6,45.5 137.0,74.8 148.5,71.1 159.9,84.0 171.4,90.2 182.8,94.7 194.3,88.2 205.7,91.4 217.2,96.2 228.6,96.8 240.1,78.0 251.5,78.1 263.0,76.7 274.4,75.1 285.9,74.2 297.3,72.3 308.8,83.2 320.2,93.0 331.7,85.9 343.1,83.0 354.6,80.6 366.0,80.6" class="line"/>
       <circle cx="366.0" cy="80.6" r="4" class="dot"/>
       <text x="366.0" y="70.6" text-anchor="end" class="val">$1,002.40</text>
-      <text x="34.0" y="33.5" text-anchor="start" class="val">$1,230.73</text>
-      <text x="34.0" y="126" text-anchor="middle">9 Oct</text><text x="34.0" y="144" text-anchor="middle" class="cnt">12</text><text x="91.2" y="126" text-anchor="middle">14 Oct</text><text x="91.2" y="144" text-anchor="middle" class="cnt">8</text><text x="148.5" y="126" text-anchor="middle">19 Oct</text><text x="148.5" y="144" text-anchor="middle" class="cnt">5</text><text x="205.7" y="126" text-anchor="middle">24 Oct</text><text x="205.7" y="144" text-anchor="middle" class="cnt">5</text><text x="263.0" y="126" text-anchor="middle">29 Oct</text><text x="263.0" y="144" text-anchor="middle" class="cnt">4</text><text x="320.2" y="126" text-anchor="middle">3 Nov</text><text x="320.2" y="144" text-anchor="middle" class="cnt">4</text><text x="366.0" y="126" text-anchor="middle">7 Nov</text><text x="366.0" y="144" text-anchor="middle" class="cnt">4</text>
+      <text x="34.0" y="35.9" text-anchor="start" class="val">$1,215.74</text>
+      <text x="34.0" y="126" text-anchor="middle">10 Oct</text><text x="34.0" y="144" text-anchor="middle" class="cnt">10</text><text x="91.2" y="126" text-anchor="middle">15 Oct</text><text x="91.2" y="144" text-anchor="middle" class="cnt">8</text><text x="148.5" y="126" text-anchor="middle">20 Oct</text><text x="148.5" y="144" text-anchor="middle" class="cnt">5</text><text x="205.7" y="126" text-anchor="middle">25 Oct</text><text x="205.7" y="144" text-anchor="middle" class="cnt">5</text><text x="263.0" y="126" text-anchor="middle">30 Oct</text><text x="263.0" y="144" text-anchor="middle" class="cnt">4</text><text x="320.2" y="126" text-anchor="middle">4 Nov</text><text x="320.2" y="144" text-anchor="middle" class="cnt">4</text><text x="366.0" y="126" text-anchor="middle">8 Nov</text><text x="366.0" y="144" text-anchor="middle" class="cnt">4</text>
     </svg>
     <p class="small">Small numbers under each date are how many cards were still needed. Dashed lines mark days that number changed (cards added or bought), so the total jumps there for that reason, not because prices moved.</p>
   </section>
