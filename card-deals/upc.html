@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#121019"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Card Deals · 30th UPC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f6f5f9; --surface: #ffffff; --fg: #1b1924; --muted: #615d72; --line: #e2dfea;
+  --accent: #4b2fb0; --good: #1f7a4d; --good-bg: #e3f3ea; --ok: #8a5a00; --ok-bg: #fbf0d9;
+  --high: #b3261e; --high-bg: #fbe5e3; --on-accent: #ffffff;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121019; --surface: #1c1926; --fg: #ecebf2; --muted: #a29db5; --line: #2e2a3b;
+  --accent: #a995ff; --good: #6fd3a0; --good-bg: #173327; --ok: #f0c25e; --ok-bg: #3a2e12;
+  --high: #ff8f86; --high-bg: #3f1c1a; --on-accent: #121019; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121019; --surface: #1c1926; --fg: #ecebf2; --muted: #a29db5; --line: #2e2a3b;
+  --accent: #a995ff; --good: #6fd3a0; --good-bg: #173327; --ok: #f0c25e; --ok-bg: #3a2e12;
+  --high: #ff8f86; --high-bg: #3f1c1a; --on-accent: #121019; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 48px; display: grid; gap: 22px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+a { color: var(--accent); text-underline-offset: 2px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted, .eyebrow { color: var(--muted); font-size: 0.85rem; }
+.head { display: grid; gap: 6px; }
+.summary { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: baseline; padding-block: 14px; border-block: 1px solid var(--line); }
+.summary .k { display: grid; }
+.summary .k span:first-child { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.big { font-family: var(--display); font-size: 2.2rem; font-weight: 800; }
+.list { display: grid; gap: 12px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.box header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: start; }
+.rank { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); display: grid; place-items: center; font-size: 0.8rem; color: var(--muted); }
+.box.top .rank { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.t { display: grid; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.pp { display: grid; justify-items: end; }
+.pp b { font-size: 1.25rem; }
+.pp span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.cost { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 0.88rem; color: var(--muted); }
+.cost .tot { color: var(--fg); font-weight: 500; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; align-items: center; }
+.tag { font-size: 0.72rem; padding: 1px 8px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+.tag.pre { background: var(--ok-bg); color: var(--ok); border-color: transparent; }
+.tag.good { background: var(--good-bg); color: var(--good); border-color: transparent; }
+.delta { font-size: 0.78rem; color: var(--muted); }
+.delta.down { color: var(--good); } .delta.up { color: var(--high); }
+details summary { cursor: pointer; font-size: 0.85rem; color: var(--muted); }
+details ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 0.88rem; }
+details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; overflow-wrap: anywhere; }
+.code { font: 500 0.72rem var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; vertical-align: 2px; margin-left: 4px; white-space: nowrap; }
+.box.empty { opacity: 0.8; }
+.hot { background: var(--good-bg); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; }
+.hot h2 { color: var(--good); }
+.hot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.88rem; }
+.hot li, details li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; overflow-wrap: anywhere; }
+.kind { font-size: 0.85rem; font-weight: 500; }
+.era { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.viewby { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 0.85rem; color: var(--muted); }
+.viewby button { font: 500 0.88rem var(--body); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.viewby button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.viewby button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eras { display: grid; gap: 26px; }
+.era-group { display: grid; gap: 10px; }
+.era-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
+.notes { font-size: 0.85rem; color: var(--muted); display: grid; gap: 6px; }
+.notes ul { margin: 0; padding-left: 18px; }
+.err { background: var(--high-bg); color: var(--high); border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; }
+</style>
+<div class="wrap">
+  <div class="head"><h1>30th UPC</h1>
+    <span class="eyebrow">Pokemon 30th Celebration Ultra-Premium Collection, Day (Espeon) and Night (Umbreon) editions. Checked Mon 16 Nov, 5:58pm Perth.</span></div>
+  <style>.upc .box header{grid-template-columns:minmax(0,1fr) auto}.upc .t{min-width:0;overflow-wrap:anywhere}.upc .cost{gap:4px 14px}.upc li{display:grid;gap:2px}.upc li .num{overflow-wrap:anywhere}</style><section class="era-group upc"><div class="era-head"><h2>30th Celebration UPC</h2>
+  <span class="muted">Cheapest sealed English Ultra-Premium Collection per edition, landed to 6103, on eBay AU and the AU stores checked.
+  Delta is landed price minus retail (Kmart price $360 per edition (Kmart pre-order, seen 8 Oct 2026)). Claude never buys or bids.</span></div>
+  <div class="list">
+<article class="box">
+  <header><div class="t"><h3>Day edition <span class="code">Espeon</span></h3>
+      <a href="https://www.ebay.com.au/itm/307279699092" target="_blank" rel="noopener">eBay abu_2462</a><span class="muted"> · 12 feedback, 100%</span>
+      <div class="tags"><span class="delta up">+$289.00 (+80%) vs retail</span></div></div>
+    <div class="pp"><b class="num">$649.00</b><span>landed</span></div></header>
+  <div class="cost num"><span>Price $649.00</span><span>Postage $0.00</span><span class="tot">Retail $360.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><span><a href="https://www.ebay.com.au/itm/128197876352" target="_blank" rel="noopener">eBay icravecardboards</a></span><span class="num"><b>$655.00</b> · $647.00 + $8.00 · +$295.00 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/820357550132" target="_blank" rel="noopener">eBay tcgstockaus</a></span><span class="num"><b>$659.50</b> · $659.50 + $0.00 · +$299.50 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/820356902703" target="_blank" rel="noopener">eBay tcgstockaus</a></span><span class="num"><b>$659.50</b> · $659.50 + $0.00 · +$299.50 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/820357014091" target="_blank" rel="noopener">eBay tcgstockaus</a></span><span class="num"><b>$659.50</b> · $659.50 + $0.00 · +$299.50 vs retail</span></li></ul></details>
+</article>
+<article class="box">
+  <header><div class="t"><h3>Night edition <span class="code">Umbreon</span></h3>
+      <a href="https://www.ebay.com.au/itm/307279675541" target="_blank" rel="noopener">eBay abu_2462</a><span class="muted"> · 12 feedback, 100%</span>
+      <div class="tags"><span class="delta up">+$299.00 (+83%) vs retail</span></div></div>
+    <div class="pp"><b class="num">$659.00</b><span>landed</span></div></header>
+  <div class="cost num"><span>Price $659.00</span><span>Postage $0.00</span><span class="tot">Retail $360.00</span></div>
+  <details><summary>Next cheapest (4)</summary><ul><li><span><a href="https://www.ebay.com.au/itm/327453994607" target="_blank" rel="noopener">eBay ezpz92</a></span><span class="num"><b>$667.82</b> · $650.00 + $17.82 · +$307.82 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/137934916769" target="_blank" rel="noopener">eBay mw-cards</a></span><span class="num"><b>$674.00</b> · $649.00 + $25.00 · +$314.00 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/940087323228" target="_blank" rel="noopener">eBay m777r</a></span><span class="num"><b>$679.00</b> · $679.00 + $0.00 · +$319.00 vs retail</span></li><li><span><a href="https://www.ebay.com.au/itm/820357502745" target="_blank" rel="noopener">eBay tcgstockaus</a></span><span class="num"><b>$679.95</b> · $679.95 + $0.00 · +$319.95 vs retail</span></li></ul></details>
+</article></div></section>
+</div><style>.apptabs{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;gap:8px;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px));background:var(--surface,#1c1926);border-top:1px solid var(--line,#2e2a3b);font:600 14px/1 "IBM Plex Sans",system-ui,sans-serif}.apptabs a{flex:1;max-width:220px;text-align:center;padding:11px 6px;white-space:nowrap;border-radius:8px;text-decoration:none;color:var(--muted,#a29db5)}.apptabs a[aria-current]{background:var(--accent,#a995ff);color:var(--on-accent,#121019)}body{padding-bottom:72px}</style><nav class="apptabs" aria-label="Pages"><a href="./">Cards</a><a href="boxes.html">Booster packs</a><a href="upc.html" aria-current="page">30th UPC</a></nav><script>if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js");</script></body></html>
